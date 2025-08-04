@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>All Products Page</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+    <h1>All Products Page</h1>
+    <ul>
+        <li th:each="product:${products}">
+            <strong th:text="${product.name}"></strong>
+            <span th:text="${(product.priceCents / 100)}"></span>
+            <form action="#" th:action="@{/cart/add/{id}(id=${product.getId()})}" th:object="${product.getId()}" th:if="${product.quantity > 0}" method="post">
+                <input type="submit" value="Add To Cart"/>
+            </form>
+        </li>
+    </ul>
+</body>
+</html>
